@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.16)
+project(MyDrogonApp)
+
+# Установите стандарт C++
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Укажите компилятор
+set(CMAKE_CXX_COMPILER "C:/ming/mingw64/bin/g++.exe")
+
+# Укажите путь к vcpkg
+set(CMAKE_TOOLCHAIN_FILE "C:/c++/vcpkg/scripts/buildsystems/vcpkg.cmake")
+set(DROGON_VIEW_PATH ${CMAKE_SOURCE_DIR}/views)
+set(DROGON_STATIC_PATH ${CMAKE_SOURCE_DIR}/static)
+
+include_directories("C:/c++/vcpkg/installed/x64-windows/include")
+
+# Добавьте главный файл
+add_executable(${PROJECT_NAME} main.cpp database.cpp)
+
+# Установите путь к статическим файлам и представлениям
+target_compile_definitions(${PROJECT_NAME} PRIVATE DROGON_STATIC_PATH="${DROGON_STATIC_PATH}")
+target_compile_definitions(${PROJECT_NAME} PRIVATE DROGON_VIEW_PATH="${DROGON_VIEW_PATH}")
+
+# Подключите библиотеку JsonCpp
+find_package(JsonCpp CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE JsonCpp::JsonCpp)
+
+# Подключите библиотеку drogon
+find_package(Drogon CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
+
+# Подключите библиотеку SQLite3
+find_package(SQLite3 REQUIRED)
+include_directories(${SQLite3_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PRIVATE C:/c++/vcpkg/installed/x64-windows/lib/sqlite3.lib)

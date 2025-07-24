@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with GCC",
+            "type": "shell",
+            "command": "C:/ming/mingw64/bin/g++.exe",
+            "args": [
+                "-g",
+                "${workspaceFolder}/src/*.cpp",
+                "-o",
+                "${workspaceFolder}/build/app.exe",
+                "-I",
+                "C:/c++/vcpkg/installed/x64-windows/include",
+                "-L",
+                "C:/c++/vcpkg/installed/x64-windows/lib",
+                "-ldrogon",
+                "-lssl",
+                "-lsqlite3"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}

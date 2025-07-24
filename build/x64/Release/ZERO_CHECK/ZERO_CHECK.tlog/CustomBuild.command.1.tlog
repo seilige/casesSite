@@ -1,0 +1,10 @@
+^C:\USERS\ACER\DESKTOP\MAIN\BUILD\CMAKEFILES\0AA245F9FAA4E9493A78EF04B5E9BBB8\GENERATE.STAMP.RULE
+setlocal
+C:\ming\mingw64\bin\cmake.exe -SC:/Users/Acer/Desktop/main -BC:/Users/Acer/Desktop/main/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Acer/Desktop/main/build/MyDrogonApp.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cases</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/scripts.js" defer></script>
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="user-info">
+            <div class="balance">
+                <span>💰 Баланс: 99999</span>
+            </div>
+        </div>
+        <div class="profile">
+            <img src="/static/images/default_avatar.jpg" alt="Profile" class="avatar" onclick="toggleInventory()" title="Открыть инвентарь">
+            <div class="profile-menu">
+                <a href="/profile">Профиль</a>
+                <button onclick="logout()" class="logout-btn">Выйти</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1>Добро пожаловать в магазин кейсов!</h1>
+        <div class="cases-container">
+            <div class="case" onclick="openCase(1)">
+                <img src="/static/images/case1.jpg" alt="Case 1">
+                <p>Кейс 1 (15 предметов)</p>
+                <p class="case-price">Цена: 100 монет</p>
+            </div>
+            <div class="case" onclick="openCase(2)">
+                <img src="/static/images/case2.jpg" alt="Case 2">
+                <p>Кейс 2 (7 предметов)</p>
+                <p class="case-price">Цена: 50 монет</p>
+            </div>
+            <div class="case" onclick="openCase(3)">
+                <img src="/static/images/case3.jpg" alt="Case 3">
+                <p>Кейс 3 (3 предмета)</p>
+                <p class="case-price">Цена: 25 монет</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for case opening -->
+    <div id="case-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Открытие кейса</h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div class="roulette-container">
+                <div class="arrow"></div>
+                <div id="roulette" class="roulette"></div>
+            </div>
+            <button id="open-button" onclick="startRoulette()">Открыть кейс</button>
+            <div class="case-items-title">
+                <h3>Возможные предметы:</h3>
+            </div>
+            <div class="case-items" id="case-items"></div>
+        </div>
+    </div>
+
+    <!-- Fullscreen item display -->
+    <div id="fullscreen-item" class="fullscreen hidden">
+        <div class="fullscreen-content">
+            <h2>Поздравляем! Вы получили:</h2>
+            <img id="fullscreen-image" src="" alt="Selected Item">
+            <button onclick="document.getElementById('fullscreen-item').classList.add('hidden')">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Inventory modal -->
+    <div id="inventory-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ваш инвентарь</h2>
+                <button class="close-btn" onclick="toggleInventory()">×</button>
+            </div>
+            <div id="inventory-items" class="inventory-items"></div>
+            <div class="inventory-footer">
+                <p>Всего предметов: <span id="inventory-count">0</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
